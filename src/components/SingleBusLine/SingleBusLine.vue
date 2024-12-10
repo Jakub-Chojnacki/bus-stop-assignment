@@ -2,6 +2,8 @@
 import { computed, defineProps } from "vue";
 import { useStore } from "vuex";
 
+import { ActionTypes } from "@/store/actions";
+
 const store = useStore();
 
 interface IProps {
@@ -14,7 +16,7 @@ const isSelected = computed(() => store.state.selectedBusLine === props.line);
 
 <template>
   <button
-    @click="store.dispatch('setSelectedBusLine', props.line)"
+    @click="store.dispatch(ActionTypes.SET_SELECTED_BUS_LINE, props.line)"
     class="single-line-button"
     :class="{ active: isSelected }"
     type="button"
