@@ -10,7 +10,7 @@
 import MainNavbar from "../MainNavbar/MainNavbar.vue";
 </script>
 
-<style scoped>
+<style>
 .wrapper {
   --main-bg-color: #f3f4f9;
   --heading-text-color: #1a1a1a;
@@ -31,6 +31,10 @@ import MainNavbar from "../MainNavbar/MainNavbar.vue";
     font-size: 1.5rem;
     line-height: 2rem;
     color: var(--heading-text-color);
+  }
+
+  .divider {
+    border-bottom: 1px solid var(--main-bg-color);
   }
 }
 </style>

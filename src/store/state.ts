@@ -5,7 +5,7 @@ export type TState = {
   error: string | null;
   stops: TGetStopsResponse;
   selectedBusLine: number | null;
-  selectedBusStop: number | null;
+  selectedBusStop: string | null;
 };
 
 export const state: TState = {
