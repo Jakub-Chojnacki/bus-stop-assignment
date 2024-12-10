@@ -7,7 +7,17 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useStore } from "@/store";
+import { ActionTypes } from "@/store/actions";
+
 import MainNavbar from "../MainNavbar/MainNavbar.vue";
+
+const store = useStore();
+
+onMounted(() => {
+  store.dispatch(ActionTypes.FETCH_STOPS);
+});
 </script>
 
 <style>

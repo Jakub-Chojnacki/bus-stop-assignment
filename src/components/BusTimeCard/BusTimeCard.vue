@@ -5,6 +5,7 @@ import { useStore } from "@/store";
 import { GetterTypes } from "@/store/getters";
 
 import SingleBusTime from "../SingleBusTime/SingleBusTime.vue";
+import CardHeader from "../CardHeader/CardHeader.vue";
 
 const store = useStore();
 
@@ -13,18 +14,19 @@ const selectedBusLine = computed(() => store.state.selectedBusStop);
 const busTimes = computed(() =>
   selectedBusLine.value
     ? store.getters[GetterTypes.GET_TIMES_FOR_STOP](selectedBusLine.value)
-    : null
+    : []
 );
-
-console.log(busTimes.value);
 </script>
 
 <template>
   <div class="bus-card-wrapper">
-    <div class="bus-card-heading">
-      <h2>Bus Stop: {{ selectedBusLine }}</h2>
-    </div>
-    <div class="bus-stop-sort divider">Time</div>
+    <CardHeader
+      :is-sortable="false"
+      :sort-text="'Time'"
+      :header-text="`Bus Stop: ${selectedBusLine}`"
+      :is-sort-asc="false"
+      :handle-change-sort="() => {}"
+    />
     <div class="scroll-wrapper">
       <div
         class="single-bus-wrapper divider"
@@ -41,40 +43,9 @@ console.log(busTimes.value);
 .bus-card-wrapper {
   width: 100%;
 
-  .bus-card-heading,
-  .bus-stop-sort {
-    padding-inline: 1.5rem;
-    padding-block: 1.5rem 0.5rem;
-  }
-
-  .bus-card-heading {
-    height: var(--card-header-height);
-  }
-
-  .bus-stop-sort{
-    height: var(--card-sort-wrapper-height)
-  }
-
   .scroll-wrapper {
     overflow-y: auto;
-    max-height: var(--card-list-max-height)
-  }
-
-  .bus-card-heading {
-    display: flex;
-    align-items: flex-end;
-
-    h2 {
-      font-size: 0.875rem;
-      color: var(--heading-text-color);
-    }
-  }
-
-  .bus-stop-sort {
-    outline: 0;
-    background: transparent;
-    width: 100%;
-    text-align: left;
+    max-height: var(--card-list-max-height);
   }
 }
 </style>

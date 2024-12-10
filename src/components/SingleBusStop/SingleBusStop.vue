@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { useStore } from "@/store";
-import { computed, defineProps } from "vue";
+import { computed, defineProps, withDefaults } from "vue";
 
 type TProps = {
   stop: string;
+  isSelectable?: boolean;
 };
 
-const props = defineProps<TProps>();
+const props = withDefaults(defineProps<TProps>(), {
+  isSelectable: () => false,
+});
 const store = useStore();
 const isSelected = computed(() => store.state.selectedBusStop === props.stop);
 </script>
 
 <template>
-  <div class="single-bus-stop-wrapper">
-    <span class="bus-stop-text" :class="{'active': isSelected }">{{
+  <div class="single-bus-stop-wrapper" :class="{ selectable: isSelectable }">
+    <span class="bus-stop-text" :class="{ active: isSelected }">{{
       props.stop
     }}</span>
   </div>
@@ -27,11 +30,6 @@ const isSelected = computed(() => store.state.selectedBusStop === props.stop);
   width: 100%;
   padding-inline: 1.5rem;
 
-  &:hover {
-    background-color: var(--hover-element-bg-color);
-    cursor: pointer;
-  }
-
   .bus-stop-text {
     color: var(--active-link-color);
     font-size: 0.75rem;
@@ -41,5 +39,10 @@ const isSelected = computed(() => store.state.selectedBusStop === props.stop);
       color: var(--accent-color);
     }
   }
+}
+
+.selectable:hover {
+  background-color: var(--hover-element-bg-color);
+  cursor: pointer;
 }
 </style>

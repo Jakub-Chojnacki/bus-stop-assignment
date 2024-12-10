@@ -7,6 +7,7 @@ export enum GetterTypes {
   GET_UNIQUE_LINES = "GET_UNIQUE_LINES",
   GET_BUS_STOPS_FOR_LINE = "GET_BUS_STOPS_FOR_LINE",
   GET_TIMES_FOR_STOP = "GET_TIMES_FOR_STOP",
+  GET_FILTERED_STOPS = "GET_FILTERED_STOPS",
 }
 
 export type Getters = {
@@ -17,6 +18,9 @@ export type Getters = {
   [GetterTypes.GET_TIMES_FOR_STOP](
     state: TState
   ): (stop: string) => TSingleStop["time"][];
+  [GetterTypes.GET_FILTERED_STOPS](
+    state: TState
+  ): (filter: string, sort: TSortDirection) => TSingleStop["stop"][];
 };
 
 export const getters: GetterTree<TState, TState> & Getters = {
@@ -26,7 +30,7 @@ export const getters: GetterTree<TState, TState> & Getters = {
   },
   [GetterTypes.GET_BUS_STOPS_FOR_LINE]:
     (state) =>
-    (line: number, sort = "asc") => {
+    (line, sort = "asc") => {
       const stops = state.stops.reduce((acc: string[], stop) => {
         if (stop.line === line) {
           acc.push(stop.stop);
@@ -61,4 +65,21 @@ export const getters: GetterTree<TState, TState> & Getters = {
 
     return uniqueSortedTimes;
   },
+  [GetterTypes.GET_FILTERED_STOPS]:
+    (state) =>
+    (filter, sort = "asc") => {
+      const lines = state.stops.map((stop) => stop.stop).sort(); //TODO: Use reduce to avoid looping twice
+      const uniqueLines = [...new Set(lines)];
+
+      const filteredStops = uniqueLines.filter((stop) =>
+        stop.toLowerCase().includes(filter.toLowerCase())
+      );
+
+      const sortedFilteredStops = filteredStops.sort((a, b) => {
+        if (sort === "asc") return a.localeCompare(b);
+        return b.localeCompare(a);
+      });
+
+      return sortedFilteredStops;
+    },
 };
