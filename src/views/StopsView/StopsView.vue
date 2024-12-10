@@ -1,14 +1,10 @@
 <template>
-      <MainLayout>
-        
-    </MainLayout>
+  <MainLayout>
+    <BusStopsList />
+  </MainLayout>
 </template>
 
 <script setup>
+import BusStopsList from "@/components/BusStopsList/BusStopsList.vue";
 import MainLayout from "@/components/MainLayout/MainLayout.vue";
-
 </script>
-
-<style lang="scss" scoped>
-
-</style>
