@@ -10,8 +10,8 @@
   border: 4px solid;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border-color: var(--accent-color) transparent transparent transparent;
 }
 

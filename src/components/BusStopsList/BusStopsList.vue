@@ -2,12 +2,14 @@
 import { computed, ref } from "vue";
 
 import { GetterTypes } from "@/store/getters";
+import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 
 import SingleBusStop from "../SingleBusStop/SingleBusStop.vue";
 import SearchInput from "../SearchInput/SearchInput.vue";
 import CardHeader from "../CardHeader/CardHeader.vue";
 import BasicLoader from "../BasicLoader/BasicLoader.vue";
+import ErrorWithRefetch from "../ErrorWithRefetch/ErrorWithRefetch.vue";
 
 import { TSortDirection } from "@/types/app";
 
@@ -19,8 +21,14 @@ const isSortAsc = computed(() => sort.value === "asc");
 const busStops = computed(() =>
   store.getters[GetterTypes.GET_FILTERED_STOPS](searchValue.value, sort.value)
 );
+const isLoadingStops = computed(() => store.state.isLoadingStops);
+const error = computed(() => store.state.error);
 
-const handleChangeSort = () => {
+const handleRetry = (): void => {
+  store.dispatch(ActionTypes.FETCH_STOPS);
+};
+
+const handleChangeSort = ():void => {
   if (isSortAsc.value) {
     sort.value = "dsc";
   } else {
@@ -48,10 +56,17 @@ const handleChangeSort = () => {
       >
         <SingleBusStop :stop="stop" />
       </div>
-      <div>
+      <div class="fetch-state-wrapper" v-if="isLoadingStops">
         <BasicLoader />
       </div>
-      <div class="empty-stops" v-if="!busStops.length">
+      <div class="fetch-state-wrapper" v-if="error">
+        <ErrorWithRefetch :error="error" :handle-retry="handleRetry" />
+      </div>
+
+      <div
+        class="empty-stops"
+        v-if="!busStops.length && !isLoadingStops && !error"
+      >
         No bus stops were found!
       </div>
     </div>
@@ -61,6 +76,7 @@ const handleChangeSort = () => {
 <style scoped lang="scss">
 .bus-list-wrapper {
   --list-spacing: 0.5rem;
+  --container-min-height: 300px;
   background-color: white;
 
   .search-wrapper {
@@ -73,10 +89,17 @@ const handleChangeSort = () => {
   }
 
   .empty-stops {
-    min-height: 300px;
+    min-height: var(--container-min-height);
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .fetch-state-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: var(--container-min-height);
   }
 }
 </style>

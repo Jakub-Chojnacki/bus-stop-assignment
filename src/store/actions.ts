@@ -33,6 +33,7 @@ export interface Actions {
 export const actions: ActionTree<TState, TState> = {
   async [ActionTypes.FETCH_STOPS](context) {
     context.commit(MutationTypes.SET_IS_LOADING_STOPS, true);
+    context.commit(MutationTypes.SET_ERROR, null);
     try {
       const { data } = await axios.get<TGetStopsResponse>(
         `${process.env.VUE_APP_BASE_URL}/stops`
@@ -40,7 +41,6 @@ export const actions: ActionTree<TState, TState> = {
 
       context.commit(MutationTypes.SET_STOPS, data);
     } catch (err) {
-      console.error(err);
       context.commit(
         MutationTypes.SET_ERROR,
         "An error occurred while fetching the data."

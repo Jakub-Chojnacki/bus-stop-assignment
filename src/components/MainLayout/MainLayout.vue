@@ -32,6 +32,7 @@ onMounted(() => {
   --main-lighten-2-color: #63666e;
   --active-link-color: #33373c;
   --hover-element-bg-color: #f8f8fb;
+  --error-text-color: red;
   min-height: 100dvh;
   background-color: var(--main-bg-color);
   padding: 2.5rem 2rem;
