@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
+
 import SingleBusLine from "../SingleBusLine/SingleBusLine.vue";
+import { GetterTypes } from "@/store/getters";
+import { useStore } from "@/store";
 
 const store = useStore();
-const uniqueLines = computed(() => store.getters["getUniqueLines"]);
+const uniqueLines = computed(() => store.getters[GetterTypes.GET_UNIQUE_LINES]);
 </script>
 
 <template>
@@ -13,7 +15,7 @@ const uniqueLines = computed(() => store.getters["getUniqueLines"]);
     <div class="bus-line-wrapper">
       <SingleBusLine
         v-for="line in uniqueLines"
-        :key="line.line"
+        :key="String(line)"
         :line="line"
       />
     </div>

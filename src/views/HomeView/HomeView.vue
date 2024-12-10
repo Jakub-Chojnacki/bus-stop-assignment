@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 import { ActionTypes } from "@/store/actions";
 
 import BusLineSelect from "@/components/BusLineSelect/BusLineSelect.vue";

@@ -11,7 +11,6 @@
 
 <style lang="scss" scoped>
 .nav-wrapper {
-  --nav-active-link-color: #33373c;
   --nav-inactive-link-color: var(--secondary-color);
   --nav-spacing: 1.25rem;
   --nav-link-font-size: 0.875rem;
@@ -47,7 +46,7 @@
   }
 
   .active-route {
-    color: var(--nav-active-link-color);
+    color: var(--active-link-color);
     border-bottom: 2px solid var(--accent-color);
   }
 }

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 
 import { ActionTypes } from "@/store/actions";
 
 const store = useStore();
 
 interface IProps {
-  line: string;
+  line: number;
 }
 
 const props = defineProps<IProps>();

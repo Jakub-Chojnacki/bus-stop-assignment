@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 import BusStopCard from "../BusStopCard/BusStopCard.vue";
 import BusTimeCard from "../BusTimeCard/BusTimeCard.vue";
 
@@ -12,7 +12,7 @@ const isSelectedBusStop = computed(() => !!store.state.selectedBusStop);
 
 <template>
   <div class="bus-select-area-wrapper">
-    <div class="bus-card" :class="{ 'empty': !isSelectedBusStop }">
+    <div class="bus-card" :class="{ 'empty': !isSelectedBusLine }">
       <span v-if="!isSelectedBusLine" class="not-selected">Please select the bus line first</span>
       <BusStopCard v-else />
     </div>
