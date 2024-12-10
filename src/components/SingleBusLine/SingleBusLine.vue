@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
-import { useStore } from "@/store";
 
+import { useStore } from "@/store";
 import { ActionTypes } from "@/store/actions";
 
 const store = useStore();

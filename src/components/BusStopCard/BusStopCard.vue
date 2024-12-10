@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, defineProps, Ref, ref } from "vue";
 import { useStore } from "@/store";
+import { GetterTypes } from "@/store/getters";
+import { ActionTypes } from "@/store/actions";
 
 import SingleBusStop from "../SingleBusStop/SingleBusStop.vue";
-
-import { GetterTypes } from "@/store/getters";
-import { TSortDirection } from "@/types/app";
-import { ActionTypes } from "@/store/actions";
-import { TSingleStop } from "@/types/api";
 import CardHeader from "../CardHeader/CardHeader.vue";
+
+import { TSortDirection } from "@/types/app";
+import { TSingleStop } from "@/types/api";
 
 type TProps = {
   line: number;
@@ -20,8 +20,11 @@ const store = useStore();
 const sort: Ref<TSortDirection> = ref("asc");
 
 const isSortAsc = computed(() => sort.value === "asc");
+const busStops = computed(() =>
+  store.getters[GetterTypes.GET_BUS_STOPS_FOR_LINE](props.line, sort.value)
+);
 
-const handleChangeSort = () => {
+const handleChangeSort = (): void => {
   if (isSortAsc.value) {
     sort.value = "dsc";
   } else {
@@ -29,13 +32,9 @@ const handleChangeSort = () => {
   }
 };
 
-const handleSetStop = (stop: TSingleStop["stop"]) => {
+const handleSetStop = (stop: TSingleStop["stop"]): void => {
   store.dispatch(ActionTypes.SET_SELECTED_BUS_STOP, stop);
 };
-
-const busStops = computed(() =>
-  store.getters[GetterTypes.GET_BUS_STOPS_FOR_LINE](props.line, sort.value)
-);
 </script>
 
 <template>
@@ -53,7 +52,11 @@ const busStops = computed(() =>
         v-for="stop in busStops"
         :key="stop"
       >
-        <SingleBusStop :stop="stop" @click="handleSetStop(stop)" :is-selectable="true" />
+        <SingleBusStop
+          :stop="stop"
+          @click="handleSetStop(stop)"
+          :is-selectable="true"
+        />
       </div>
     </div>
   </div>

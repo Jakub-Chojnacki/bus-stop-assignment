@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import SingleBusLine from "../SingleBusLine/SingleBusLine.vue";
 import { GetterTypes } from "@/store/getters";
 import { useStore } from "@/store";
+
+import SingleBusLine from "../SingleBusLine/SingleBusLine.vue";
 
 const store = useStore();
 const uniqueLines = computed(() => store.getters[GetterTypes.GET_UNIQUE_LINES]);

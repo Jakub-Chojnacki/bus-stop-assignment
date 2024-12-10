@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, defineProps } from "vue";
+
 import SearchIcon from "@/assets/icons/SearchIcon.vue";
 
 type TProps = {
@@ -7,9 +8,10 @@ type TProps = {
   name: string;
   modelValue: string;
 };
-const props = defineProps<TProps>();
-const isFocused = ref(false);
 
+const props = defineProps<TProps>();
+
+const isFocused = ref(false);
 const isFloating = computed(() => isFocused.value || props.modelValue.length);
 </script>
 

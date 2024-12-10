@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
+
 import { useStore } from "@/store";
 import { ActionTypes } from "@/store/actions";
 

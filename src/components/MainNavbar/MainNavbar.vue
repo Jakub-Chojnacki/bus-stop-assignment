@@ -7,8 +7,6 @@
   </div>
 </template>
 
-<script setup></script>
-
 <style lang="scss" scoped>
 .nav-wrapper {
   --nav-inactive-link-color: var(--secondary-color);

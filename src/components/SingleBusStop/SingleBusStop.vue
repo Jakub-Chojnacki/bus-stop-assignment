@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useStore } from "@/store";
 import { computed, defineProps, withDefaults } from "vue";
+
+import { useStore } from "@/store";
 
 type TProps = {
   stop: string;
@@ -10,7 +11,9 @@ type TProps = {
 const props = withDefaults(defineProps<TProps>(), {
   isSelectable: () => false,
 });
+
 const store = useStore();
+
 const isSelected = computed(() => store.state.selectedBusStop === props.stop);
 </script>
 

@@ -6,12 +6,19 @@ import { useStore } from "@/store";
 
 import SingleBusStop from "../SingleBusStop/SingleBusStop.vue";
 import SearchInput from "../SearchInput/SearchInput.vue";
-import { TSortDirection } from "@/types/app";
 import CardHeader from "../CardHeader/CardHeader.vue";
+import BasicLoader from "../BasicLoader/BasicLoader.vue";
+
+import { TSortDirection } from "@/types/app";
+
+const store = useStore();
 
 const searchValue = ref("");
 const sort = ref<TSortDirection>("asc");
 const isSortAsc = computed(() => sort.value === "asc");
+const busStops = computed(() =>
+  store.getters[GetterTypes.GET_FILTERED_STOPS](searchValue.value, sort.value)
+);
 
 const handleChangeSort = () => {
   if (isSortAsc.value) {
@@ -20,11 +27,6 @@ const handleChangeSort = () => {
     sort.value = "asc";
   }
 };
-const store = useStore();
-
-const busStops = computed(() =>
-  store.getters[GetterTypes.GET_FILTERED_STOPS](searchValue.value, sort.value)
-);
 </script>
 
 <template>
@@ -45,6 +47,9 @@ const busStops = computed(() =>
         :key="stop"
       >
         <SingleBusStop :stop="stop" />
+      </div>
+      <div>
+        <BasicLoader />
       </div>
       <div class="empty-stops" v-if="!busStops.length">
         No bus stops were found!
