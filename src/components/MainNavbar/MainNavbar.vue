@@ -12,18 +12,20 @@
 <style lang="scss" scoped>
 .nav-wrapper {
   --nav-active-link-color: #33373c;
-  --nav-inactive-link-color: #9a9da4;
-  --nav-active-border-color: #1952e1;
+  --nav-inactive-link-color: var(--secondary-color);
   --nav-spacing: 1.25rem;
   --nav-link-font-size: 0.875rem;
   --nav-line-height: calc(
     var(--nav-spacing) + 1rem - var(--nav-link-font-size)
   );
+
   background-color: white;
   height: 4rem;
   display: flex;
   align-items: center;
   padding-inline: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: var(--base-border-radius);
 
   nav {
     display: flex;
@@ -46,7 +48,7 @@
 
   .active-route {
     color: var(--nav-active-link-color);
-    border-bottom: 2px solid var(--nav-active-border-color);
+    border-bottom: 2px solid var(--accent-color);
   }
 }
 </style>

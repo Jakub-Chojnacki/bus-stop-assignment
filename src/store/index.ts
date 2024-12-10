@@ -7,6 +7,8 @@ type TState = {
   isLoadingStops: boolean;
   error: string | null;
   stops: TGetStopsResponse;
+  selectedBusLine: number | null;
+  selectedBusStop: number | null;
 };
 
 export default createStore<TState>({
@@ -14,10 +16,12 @@ export default createStore<TState>({
     isLoadingStops: false,
     error: null,
     stops: [],
+    selectedBusLine: null,
+    selectedBusStop:null,
   },
   getters: {
     getUniqueLines(state) {
-      const lines = state.stops.map((stop) => stop.line);
+      const lines = state.stops.map((stop) => stop.line).sort(); //TODO: Use reduce to avoid looping twice
       return [...new Set(lines)];
     },
   },
@@ -31,6 +35,12 @@ export default createStore<TState>({
     SET_ERROR(state, value) {
       state.error = value;
     },
+    SET_SELECTED_BUS_LINE(state, value) {
+      state.selectedBusLine = value;
+    },
+    SET_SELECTED_BUS_STOP(state, value){
+      state.selectedBusStop = value;
+    }
   },
   actions: {
     async fetchStops(context) {
@@ -51,6 +61,12 @@ export default createStore<TState>({
         context.commit("SET_IS_LOADING_STOPS", false);
       }
     },
+    setSelectedBusLine(context, value: TState['selectedBusLine'] ) {
+      context.commit("SET_SELECTED_BUS_LINE", value);
+    },
+    setSelectedBusStop(context, value: TState['selectedBusStop']){
+      context.commit("SET_SELECTED_BUS_STOP", value);
+    }
   },
   modules: {},
 });
