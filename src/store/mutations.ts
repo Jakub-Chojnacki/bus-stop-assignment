@@ -18,7 +18,7 @@ export type Mutations<T = TState> = {
   [MutationTypes.SET_SELECTED_BUS_LINE](state: T, payload: number | null): void;
   [MutationTypes.SET_SELECTED_BUS_STOP](state: T, payload: string | null): void;
 };
-  
+
 export const mutations: MutationTree<TState> & Mutations = {
   [MutationTypes.SET_IS_LOADING_STOPS](state, payload: boolean) {
     state.isLoadingStops = payload;
@@ -30,6 +30,9 @@ export const mutations: MutationTree<TState> & Mutations = {
     state.error = payload;
   },
   [MutationTypes.SET_SELECTED_BUS_LINE](state, payload) {
+    //Depending on the design we could also make it so that clicking the same line again would deselect it
+    if (payload === state.selectedBusLine) return;
+
     state.selectedBusLine = payload;
     state.selectedBusStop = null;
   },

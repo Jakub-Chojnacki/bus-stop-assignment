@@ -18,6 +18,9 @@ export const store = createStore({
   modules: {},
 });
 
+/* https://dev.to/3vilarthas/vuex-typescript-m4j
+ * I think it is a bit too complex so it would be better to just use Pinia but this type gives good typesafety and intellisense
+ */
 export type TStore = Omit<
   VuexStore<TState>,
   "getters" | "commit" | "dispatch"
