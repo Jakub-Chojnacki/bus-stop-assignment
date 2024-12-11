@@ -42,17 +42,16 @@ const isSelectedBusStop = computed(() => !!store.state.selectedBusStop);
     border-radius: 4px;
     display: flex;
     height: var(--card-height);
-    background: linear-gradient(45deg, transparent, transparent);
     background-color: white;
-    mask-composite: exclude;
-    mask:
-      linear-gradient(black 0%, black 100%) border-box;
 
     &.empty {
-      border: dashed;
-      border-image: url("../assets/images/border-img.png") 4 round;
       align-items: center;
       justify-content: center;
+      border: dashed;
+      border-image: url("../assets/images/border-img.png") 4 round;
+      mask-composite: exclude;
+      mask:
+        linear-gradient(black 0%, black 100%) border-box;
     }
 
     .not-selected {
