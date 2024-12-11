@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { computed, defineProps, Ref, ref } from "vue";
 import { useStore } from "@/store";
-import { GetterTypes } from "@/store/getters";
 import { ActionTypes } from "@/store/actions";
 
 import SingleBusStop from "@/components/SingleBusStop.vue";
-import CardHeader from  "@/components/CardHeader.vue"
+import CardHeader from "@/components/CardHeader.vue"
 
 import { TSortDirection } from "@/types/app";
 import { TSingleStop } from "@/types/api";
@@ -21,7 +20,7 @@ const sort: Ref<TSortDirection> = ref("asc");
 
 const isSortAsc = computed(() => sort.value === "asc");
 const busStops = computed(() =>
-  store.getters[GetterTypes.GET_BUS_STOPS_FOR_LINE](props.line, sort.value)
+  store.getters['GET_BUS_STOPS_FOR_LINE'](props.line, sort.value)
 );
 
 const handleChangeSort = (): void => {
@@ -39,24 +38,11 @@ const handleSetStop = (stop: TSingleStop["stop"]): void => {
 
 <template>
   <div class="bus-card-wrapper">
-    <CardHeader
-      :is-sortable="true"
-      :sort-text="'Bus Stops'"
-      :header-text="`Bus Line: ${props.line}`"
-      :is-sort-asc="isSortAsc"
-      :handle-change-sort="handleChangeSort"
-    />
+    <CardHeader :is-sortable="true" :sort-text="'Bus Stops'" :header-text="`Bus Line: ${props.line}`"
+      :is-sort-asc="isSortAsc" :handle-change-sort="handleChangeSort" />
     <div class="scroll-wrapper">
-      <div
-        class="single-bus-wrapper divider"
-        v-for="stop in busStops"
-        :key="stop"
-      >
-        <SingleBusStop
-          :stop="stop"
-          @click="handleSetStop(stop)"
-          :is-selectable="true"
-        />
+      <div class="single-bus-wrapper divider" v-for="stop in busStops" :key="stop">
+        <SingleBusStop :stop="stop" @click="handleSetStop(stop)" :is-selectable="true" />
       </div>
     </div>
   </div>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { GetterTypes } from "@/store/getters";
 import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 
@@ -19,7 +18,7 @@ const searchValue = ref("");
 const sort = ref<TSortDirection>("asc");
 const isSortAsc = computed(() => sort.value === "asc");
 const busStops = computed(() =>
-  store.getters[GetterTypes.GET_FILTERED_STOPS](searchValue.value, sort.value)
+  store.getters['GET_FILTERED_STOPS'](searchValue.value, sort.value)
 );
 const isLoadingStops = computed(() => store.state.isLoadingStops);
 const error = computed(() => store.state.error);

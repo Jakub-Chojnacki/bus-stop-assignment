@@ -10,7 +10,7 @@ import { Mutations, mutations } from "./mutations";
 import { Actions, actions } from "./actions";
 import { Getters, getters } from "./getters";
 
-export const store = createStore<TState>({
+export const store = createStore({
   state,
   getters,
   mutations,

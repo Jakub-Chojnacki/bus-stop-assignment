@@ -2,10 +2,9 @@
 import { computed } from "vue";
 
 import { useStore } from "@/store";
-import { GetterTypes } from "@/store/getters";
 
 import SingleBusTime from "@/components/SingleBusTime.vue";
-import CardHeader from  "@/components/CardHeader.vue"
+import CardHeader from "@/components/CardHeader.vue"
 
 const store = useStore();
 
@@ -13,26 +12,17 @@ const selectedBusLine = computed(() => store.state.selectedBusStop);
 
 const busTimes = computed(() =>
   selectedBusLine.value
-    ? store.getters[GetterTypes.GET_TIMES_FOR_STOP](selectedBusLine.value)
+    ? store.getters['GET_TIMES_FOR_STOP'](selectedBusLine.value)
     : []
 );
 </script>
 
 <template>
   <div class="bus-card-wrapper">
-    <CardHeader
-      :is-sortable="false"
-      :sort-text="'Time'"
-      :header-text="`Bus Stop: ${selectedBusLine}`"
-      :is-sort-asc="false"
-      :handle-change-sort="() => {}"
-    />
+    <CardHeader :is-sortable="false" :sort-text="'Time'" :header-text="`Bus Stop: ${selectedBusLine}`"
+      :is-sort-asc="false" :handle-change-sort="() => { }" />
     <div class="scroll-wrapper">
-      <div
-        class="single-bus-wrapper divider"
-        v-for="busTime in busTimes"
-        :key="busTime"
-      >
+      <div class="single-bus-wrapper divider" v-for="busTime in busTimes" :key="busTime">
         <SingleBusTime :time="busTime" />
       </div>
     </div>

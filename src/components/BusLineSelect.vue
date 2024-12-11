@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { GetterTypes } from "@/store/getters";
 import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 
@@ -10,7 +9,7 @@ import BaseLoader from "@/components/BaseLoader.vue";
 import ErrorWithRefetch from "@/components/ErrorWithRefetch.vue"
 
 const store = useStore();
-const uniqueLines = computed(() => store.getters[GetterTypes.GET_UNIQUE_LINES]);
+const uniqueLines = computed(() => store.getters['GET_UNIQUE_LINES']);
 const isLoading = computed(() => store.state.isLoadingStops);
 const error = computed(() => store.state.error);
 
