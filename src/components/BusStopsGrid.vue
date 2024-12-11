@@ -14,16 +14,13 @@ const isSelectedBusStop = computed(() => !!store.state.selectedBusStop);
 <template>
   <div class="bus-select-area-wrapper">
     <div class="bus-card" :class="{ empty: !selectedBusLine }">
-      <span v-if="!selectedBusLine" class="not-selected"
-        >Please select the bus line first</span
-      >
+      <span v-if="!selectedBusLine" class="not-selected">Please select the bus line first</span>
       <BusStopCard v-else :line="selectedBusLine" />
     </div>
-    <div class="bus-card" :class="{ empty: !isSelectedBusStop }">
-      <span v-if="!isSelectedBusStop" class="not-selected"
-        >Please select the bus stop first</span
-      >
 
+
+    <div class="bus-card" :class="{ empty: !isSelectedBusStop }">
+      <span v-if="!isSelectedBusStop" class="not-selected">Please select the bus stop first</span>
       <BusTimeCard v-else />
     </div>
   </div>
@@ -31,13 +28,10 @@ const isSelectedBusStop = computed(() => !!store.state.selectedBusStop);
 
 <style lang="scss">
 .bus-select-area-wrapper {
-  --card-height: 550px;
+  --card-height: 545px;
   --card-header-height: 56px;
   --card-sort-wrapper-height: 56px;
-  --card-list-max-height: calc(
-    var(--card-height) - var(--card-header-height) -
-      var(--card-sort-wrapper-height)
-  );
+  --card-list-max-height: calc(var(--card-height) - var(--card-header-height) - var(--card-sort-wrapper-height));
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -45,13 +39,18 @@ const isSelectedBusStop = computed(() => !!store.state.selectedBusStop);
   flex-grow: 1;
 
   .bus-card {
-    border-radius: var(--base-border-radius);
-    background-color: white;
-    border: 2px dashed var(--secondary-color); /*TODO: figure out how to make longer dashes */
+    border-radius: 4px;
     display: flex;
     height: var(--card-height);
+    background: linear-gradient(45deg, transparent, transparent);
+    background-color: white;
+    mask-composite: exclude;
+    mask:
+      linear-gradient(black 0%, black 100%) border-box;
 
     &.empty {
+      border: dashed;
+      border-image: url("../assets/images/border-img.png") 4 round;
       align-items: center;
       justify-content: center;
     }

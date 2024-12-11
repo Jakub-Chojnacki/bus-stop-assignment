@@ -1,6 +1,19 @@
 //These styles could be placed in App.vue or MainLayout but I think it's cleaner to store them in a separate file
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
 
+:root{
+  --main-bg-color: #f3f4f9;
+  --heading-text-color: #1a1a1a;
+  --base-border-radius: 0.25rem;
+  --accent-color: #1952e1;
+  --accent-color-dark: #2e3e6e;
+  --secondary-color: #9a9da4;
+  --main-lighten-2-color: #63666e;
+  --active-link-color: #33373c;
+  --hover-element-bg-color: #f8f8fb;
+  --error-text-color: red;
+}
+
 body {
   font-family: "Inter", sans-serif;
 }

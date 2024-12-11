@@ -21,7 +21,9 @@ const handleRetry = (): void => {
 
 <template>
   <div class="main-wrapper">
-    <div class="heading-wrapper"><h2>Select Bus Line</h2></div>
+    <div class="heading-wrapper">
+      <h2>Select Bus Line</h2>
+    </div>
     <div class="fetch-state-wrapper" v-if="isLoading">
       <BaseLoader v-if="isLoading" />
     </div>
@@ -29,23 +31,19 @@ const handleRetry = (): void => {
       <ErrorWithRefetch :error="error" :handle-retry="handleRetry" />
     </div>
     <div class="bus-line-wrapper" v-if="!isLoading">
-      <SingleBusLine
-        v-for="line in uniqueLines"
-        :key="String(line)"
-        :line="line"
-      />
+      <SingleBusLine v-for="line in uniqueLines" :key="String(line)" :line="line" />
     </div>
   </div>
 </template>
 
 <style scoped>
 .main-wrapper {
-  --container-min-height: 200px;
   background-color: white;
   border-radius: var(--base-border-radius);
   padding-inline: 1.5rem;
   padding-block: 1.5rem 0.5rem;
   margin-bottom: 1rem;
+  min-height: 150px;
 
   .heading-wrapper {
     display: flex;
@@ -69,7 +67,6 @@ const handleRetry = (): void => {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: var(--container-min-height);
   }
 }
 </style>

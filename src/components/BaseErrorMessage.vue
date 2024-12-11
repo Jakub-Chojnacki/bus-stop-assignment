@@ -28,9 +28,7 @@ defineProps<TProps>();
   button {
     appearance: none;
     background-color: var(--accent-color);
-    border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
     color: white;
     display: inline-block;
     font-size: 0.875rem;
