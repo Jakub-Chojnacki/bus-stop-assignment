@@ -12,7 +12,7 @@ import { onMounted } from "vue";
 import { useStore } from "@/store";
 import { ActionTypes } from "@/store/actions";
 
-import MainNavbar from "../MainNavbar/MainNavbar.vue";
+import MainNavbar from "@/components/MainNavbar.vue";
 
 const store = useStore();
 

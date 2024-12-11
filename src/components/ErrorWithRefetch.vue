@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 
-import BasicErrorMessage from "../BasicErrorMessage/BasicErrorMessage.vue";
+import BaseErrorMessage from "@/components/BaseErrorMessage.vue";
 
 type TProps = {
   error: string | null;
@@ -12,7 +12,7 @@ defineProps<TProps>();
 </script>
 
 <template>
-  <BasicErrorMessage v-if="error" :error="error" :handle-retry="handleRetry" />
+  <BaseErrorMessage v-if="error" :error="error" :handle-retry="handleRetry" />
 </template>
 
 <style scoped></style>

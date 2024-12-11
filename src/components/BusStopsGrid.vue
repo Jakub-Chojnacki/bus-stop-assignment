@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "@/store";
-import BusStopCard from "../BusStopCard/BusStopCard.vue";
-import BusTimeCard from "../BusTimeCard/BusTimeCard.vue";
+
+import BusStopCard from "@/components/BusStopCard.vue";
+import BusTimeCard from "@/components/BusTimeCard.vue";
 
 const store = useStore();
 

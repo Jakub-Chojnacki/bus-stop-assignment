@@ -5,11 +5,11 @@ import { GetterTypes } from "@/store/getters";
 import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 
-import SingleBusStop from "../SingleBusStop/SingleBusStop.vue";
-import SearchInput from "../SearchInput/SearchInput.vue";
-import CardHeader from "../CardHeader/CardHeader.vue";
-import BasicLoader from "../BasicLoader/BasicLoader.vue";
-import ErrorWithRefetch from "../ErrorWithRefetch/ErrorWithRefetch.vue";
+import SingleBusStop from "@/components/SingleBusStop.vue";
+import SearchInput from "@/components/SearchInput.vue";
+import CardHeader from  "@/components/CardHeader.vue"
+import BaseLoader from "@/components/BaseLoader.vue";
+import ErrorWithRefetch from "@/components/ErrorWithRefetch.vue";
 
 import { TSortDirection } from "@/types/app";
 
@@ -57,7 +57,7 @@ const handleChangeSort = ():void => {
         <SingleBusStop :stop="stop" />
       </div>
       <div class="fetch-state-wrapper" v-if="isLoadingStops">
-        <BasicLoader />
+        <BaseLoader />
       </div>
       <div class="fetch-state-wrapper" v-if="error">
         <ErrorWithRefetch :error="error" :handle-retry="handleRetry" />

@@ -4,8 +4,8 @@ import { useStore } from "@/store";
 import { GetterTypes } from "@/store/getters";
 import { ActionTypes } from "@/store/actions";
 
-import SingleBusStop from "../SingleBusStop/SingleBusStop.vue";
-import CardHeader from "../CardHeader/CardHeader.vue";
+import SingleBusStop from "@/components/SingleBusStop.vue";
+import CardHeader from  "@/components/CardHeader.vue"
 
 import { TSortDirection } from "@/types/app";
 import { TSingleStop } from "@/types/api";

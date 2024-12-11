@@ -5,9 +5,9 @@ import { GetterTypes } from "@/store/getters";
 import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 
-import SingleBusLine from "../SingleBusLine/SingleBusLine.vue";
-import BasicLoader from "../BasicLoader/BasicLoader.vue";
-import ErrorWithRefetch from "../ErrorWithRefetch/ErrorWithRefetch.vue";
+import SingleBusLine from "@/components//SingleBusLine.vue";
+import BaseLoader from "@/components/BaseLoader.vue";
+import ErrorWithRefetch from "@/components/ErrorWithRefetch.vue"
 
 const store = useStore();
 const uniqueLines = computed(() => store.getters[GetterTypes.GET_UNIQUE_LINES]);
@@ -23,7 +23,7 @@ const handleRetry = (): void => {
   <div class="main-wrapper">
     <div class="heading-wrapper"><h2>Select Bus Line</h2></div>
     <div class="fetch-state-wrapper" v-if="isLoading">
-      <BasicLoader v-if="isLoading" />
+      <BaseLoader v-if="isLoading" />
     </div>
     <div class="fetch-state-wrapper" v-if="error">
       <ErrorWithRefetch :error="error" :handle-retry="handleRetry" />

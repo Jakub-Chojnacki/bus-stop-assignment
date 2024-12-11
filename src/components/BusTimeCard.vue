@@ -4,8 +4,8 @@ import { computed } from "vue";
 import { useStore } from "@/store";
 import { GetterTypes } from "@/store/getters";
 
-import SingleBusTime from "../SingleBusTime/SingleBusTime.vue";
-import CardHeader from "../CardHeader/CardHeader.vue";
+import SingleBusTime from "@/components/SingleBusTime.vue";
+import CardHeader from  "@/components/CardHeader.vue"
 
 const store = useStore();
 
