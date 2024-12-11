@@ -3,7 +3,7 @@ import { defineProps } from "vue";
 
 type TProps = {
   error: string;
-  handleRetry: () => void;
+  handleRetry?: () => void;
 };
 
 defineProps<TProps>();
@@ -12,7 +12,7 @@ defineProps<TProps>();
 <template>
   <div class="error-wrapper">
     <p>{{ error }}</p>
-    <button @click="handleRetry">Try again</button>
+    <button v-if="handleRetry" @click="handleRetry">Try again</button>
   </div>
 </template>
 
