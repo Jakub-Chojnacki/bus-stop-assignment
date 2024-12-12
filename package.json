@@ -9,7 +9,6 @@
     "api": "npx json-server --watch data.json",
     "test": "vitest --dom --root src/"
   },
-  "type": "module",
   "dependencies": {
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",

@@ -2,20 +2,24 @@ import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 import BaseErrorMessage from "@/components/BaseErrorMessage.vue";
 
+const fakeError = "An error occurred";
+
 describe("BaseErrorMessage.vue", () => {
   it("renders error message", () => {
     const wrapper = mount(BaseErrorMessage, {
       props: {
-        error: "An error occurred",
+        error: fakeError,
       },
     });
-    expect(wrapper.text()).toContain("An error occurred");
+    expect(wrapper.text()).toContain(fakeError);
   });
 
   it("renders retry button when handleRetry is provided", () => {
+    const handleRetry = vi.fn();
     const wrapper = mount(BaseErrorMessage, {
       props: {
-        error: "An error occurred",
+        error: fakeError,
+        handleRetry,
       },
     });
     expect(wrapper.find("button").exists()).toBe(true);
@@ -24,7 +28,7 @@ describe("BaseErrorMessage.vue", () => {
   it("does not render retry button when handleRetry is not provided", () => {
     const wrapper = mount(BaseErrorMessage, {
       props: {
-        error: "An error occurred",
+        error: fakeError,
       },
     });
     expect(wrapper.find("button").exists()).toBe(false);
@@ -34,7 +38,7 @@ describe("BaseErrorMessage.vue", () => {
     const handleRetry = vi.fn();
     const wrapper = mount(BaseErrorMessage, {
       props: {
-        error: "An error occurred",
+        error: fakeError,
         handleRetry,
       },
     });
