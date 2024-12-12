@@ -12,7 +12,7 @@ defineProps<TProps>();
 <template>
   <div class="error-wrapper">
     <p>{{ error }}</p>
-    <button v-if="handleRetry" @click="handleRetry">Try again</button>
+    <button type="button" v-if="handleRetry" @click="handleRetry">Try again</button>
   </div>
 </template>
 

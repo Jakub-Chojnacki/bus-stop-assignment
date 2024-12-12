@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "@/store";
+import { useStore } from "vuex";
 
 import BusStopCard from "@/components/BusStopCard.vue";
 import BusTimeCard from "@/components/BusTimeCard.vue";

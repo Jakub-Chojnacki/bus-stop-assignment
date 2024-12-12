@@ -1,6 +1,6 @@
-import { mutations } from "./mutations";
-import { TState } from "./state";
+import { mutations } from "@/store/mutations";
 import { TGetStopsResponse } from "@/types/api";
+import generateMockState from "@/utils/generateMockState";
 
 const {
   SET_ERROR,
@@ -9,14 +9,6 @@ const {
   SET_SELECTED_BUS_STOP,
   SET_STOPS,
 } = mutations;
-
-const generateMockState = (): TState => ({
-  isLoadingStops: false,
-  error: null,
-  stops: [],
-  selectedBusLine: null,
-  selectedBusStop: null,
-});
 
 describe("mutations", () => {
   it("SET_ERROR", () => {
@@ -51,7 +43,7 @@ describe("mutations", () => {
     expect(state.selectedBusLine).toBe(busLine);
   });
 
-  it(SET_SELECTED_BUS_STOP, () => {
+  it("SET_SELECTED_BUS_STOP", () => {
     const state = generateMockState();
 
     const busStop = "Test stop";

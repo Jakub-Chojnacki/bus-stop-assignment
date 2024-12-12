@@ -6,11 +6,12 @@ import { useStore } from "@/store";
 
 import SingleBusLine from "@/components//SingleBusLine.vue";
 import BaseLoader from "@/components/BaseLoader.vue";
-import ErrorWithRefetch from "@/components/ErrorWithRefetch.vue"
+import ErrorWithRefetch from "@/components/ErrorWithRefetch.vue";
 
 const store = useStore();
-const uniqueLines = computed(() => store.getters['GET_UNIQUE_LINES']);
-const isLoading = computed(() => store.state.isLoadingStops);
+
+const uniqueLines = computed(() => store.getters["GET_UNIQUE_LINES"]);
+const isLoadingStops = computed(() => store.state.isLoadingStops);
 const error = computed(() => store.state.error);
 
 const handleRetry = (): void => {
@@ -23,14 +24,18 @@ const handleRetry = (): void => {
     <div class="heading-wrapper">
       <h2>Select Bus Line</h2>
     </div>
-    <div class="fetch-state-wrapper" v-if="isLoading">
-      <BaseLoader v-if="isLoading" />
+    <div class="fetch-state-wrapper loading" v-if="isLoadingStops">
+      <BaseLoader v-if="isLoadingStops" />
     </div>
-    <div class="fetch-state-wrapper" v-if="error">
+    <div class="fetch-state-wrapper error" v-if="error">
       <ErrorWithRefetch :error="error" :handle-retry="handleRetry" />
     </div>
-    <div class="bus-line-wrapper" v-if="!isLoading">
-      <SingleBusLine v-for="line in uniqueLines" :key="String(line)" :line="line" />
+    <div class="bus-line-wrapper" v-if="!isLoadingStops">
+      <SingleBusLine
+        v-for="line in uniqueLines"
+        :key="String(line)"
+        :line="line"
+      />
     </div>
   </div>
 </template>

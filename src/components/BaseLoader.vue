@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner" role="status">
+  <div class="spinner" role="status" data-test-id="spinner">
     <span class="sr-only">Loading...</span>
   </div>
 </template>

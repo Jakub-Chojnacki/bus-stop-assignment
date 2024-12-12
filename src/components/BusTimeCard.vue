@@ -20,7 +20,7 @@ const busTimes = computed(() =>
 <template>
   <div class="bus-card-wrapper">
     <CardHeader :is-sortable="false" :sort-text="'Time'" :header-text="`Bus Stop: ${selectedBusLine}`"
-      :is-sort-asc="false" :handle-change-sort="() => { }" />
+      :is-sort-asc="false"/>
     <div class="scroll-wrapper">
       <div class="single-bus-wrapper divider" v-for="busTime in busTimes" :key="busTime">
         <SingleBusTime :time="busTime" />

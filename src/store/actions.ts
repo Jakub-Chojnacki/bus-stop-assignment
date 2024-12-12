@@ -49,7 +49,7 @@ export const actions: ActionTree<TState, TState> = {
       context.commit(MutationTypes.SET_IS_LOADING_STOPS, false);
     }
   },
-  [ActionTypes.SET_SELECTED_BUS_LINE](
+  SET_SELECTED_BUS_LINE(
     context,
     value: TState["selectedBusLine"]
   ) {

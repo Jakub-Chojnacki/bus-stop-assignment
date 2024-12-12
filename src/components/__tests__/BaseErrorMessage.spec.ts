@@ -1,5 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
+
 import BaseErrorMessage from "@/components/BaseErrorMessage.vue";
 
 const fakeError = "An error occurred";

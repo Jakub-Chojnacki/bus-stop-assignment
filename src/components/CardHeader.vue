@@ -21,7 +21,7 @@ defineProps<TProps>();
       <h2>{{ headerText }}</h2>
     </div>
     <button
-      v-if="isSortable"
+      v-if="isSortable && handleChangeSort"
       class="bus-sort divider"
       @click="handleChangeSort"
     >
