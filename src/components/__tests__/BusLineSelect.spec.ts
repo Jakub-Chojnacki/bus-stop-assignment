@@ -4,34 +4,21 @@ import { useStore } from "@/store";
 import BusLineSelect from "@/components/BusLineSelect.vue";
 import { MutationTypes } from "@/store/mutations";
 import generateMockStore from "@/utils/generateMockStore";
+import { fakeStopApiResponse } from "@/constants/test";
 
 vi.mock("@/store", () => ({
   useStore: vi.fn(),
 }));
 
 const setupStore = () => {
-  const fakeData = [
-    {
-      line: 103,
-      order: 1,
-      stop: "Test stop",
-      time: "13:23",
-    },
-    {
-      line: 103,
-      order: 2,
-      stop: "Second stop",
-      time: "13:33",
-    },
-  ];
   const store = generateMockStore({
-    stops: fakeData,
+    stops: fakeStopApiResponse,
     selectedBusLine: 103,
   });
 
   vi.mocked(useStore).mockReturnValue(store);
 
-  return { fakeData, store };
+  return { fakeStopApiResponse, store };
 };
 
 describe("BusLineSelect", () => {
@@ -74,7 +61,7 @@ describe("BusLineSelect", () => {
 
   it("shows a list of SingleBusLine", async () => {
     const { store } = setupStore();
-    const fakeData = [
+    const fakeStopApiResponse = [
       {
         line: 103,
         order: 1,
@@ -83,7 +70,7 @@ describe("BusLineSelect", () => {
       },
     ];
 
-    store.commit(MutationTypes.SET_STOPS, fakeData);
+    store.commit(MutationTypes.SET_STOPS, fakeStopApiResponse);
 
     const wrapper = mount(BusLineSelect, {
       global: {
@@ -96,12 +83,12 @@ describe("BusLineSelect", () => {
     expect(wrapper.find('[data-test-id="spinner"]').exists()).toBe(false);
     expect(wrapper.find(".error-wrapper").exists()).toBe(false);
     expect(wrapper.find(".bus-line-wrapper").text()).toContain(
-      fakeData[0].line
+      fakeStopApiResponse[0].line
     );
 
     const busLineButton = wrapper.find(".bus-line-wrapper");
     await busLineButton.trigger("click");
 
-    expect(store.state.selectedBusLine).toBe(fakeData[0].line);
+    expect(store.state.selectedBusLine).toBe(fakeStopApiResponse[0].line);
   });
 });

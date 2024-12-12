@@ -2,28 +2,15 @@ import { mount } from "@vue/test-utils";
 import BusStopCard from "@/components/BusStopCard.vue";
 import generateMockStore from "@/utils/generateMockStore";
 import { useStore } from "@/store";
+import { fakeStopApiResponse } from "@/constants/test";
 
 vi.mock("@/store", () => ({
   useStore: vi.fn(),
 }));
 
 const setupStoreAndWrapper = () => {
-  const fakeData = [
-    {
-      line: 103,
-      order: 1,
-      stop: "Test stop",
-      time: "13:23",
-    },
-    {
-      line: 103,
-      order: 2,
-      stop: "Second stop",
-      time: "13:33",
-    },
-  ];
   const store = generateMockStore({
-    stops: fakeData,
+    stops: fakeStopApiResponse,
     selectedBusLine: 103,
   });
 
@@ -41,7 +28,7 @@ const setupStoreAndWrapper = () => {
     },
   });
 
-  return { fakeData, store, wrapper };
+  return { fakeStopApiResponse, store, wrapper };
 };
 
 describe("BusStopCard", () => {
@@ -52,7 +39,7 @@ describe("BusStopCard", () => {
   });
 
   it("can select a bus stop", () => {
-    const { fakeData, store, wrapper } = setupStoreAndWrapper();
+    const { fakeStopApiResponse, store, wrapper } = setupStoreAndWrapper();
 
     expect(store.state.selectedBusStop).toBe(null);
     const singleBusStopButton = wrapper.find(".single-bus-stop-wrapper");
@@ -61,15 +48,15 @@ describe("BusStopCard", () => {
 
     singleBusStopButton.trigger("click");
 
-    expect(store.state.selectedBusStop).toBe(fakeData[0].stop);
+    expect(store.state.selectedBusStop).toBe(fakeStopApiResponse[0].stop);
   });
 
   it("shows a list of bus stops for the line", () => {
-    const { fakeData, store, wrapper } = setupStoreAndWrapper();
+    const { fakeStopApiResponse, store, wrapper } = setupStoreAndWrapper();
 
     expect(store.state.selectedBusStop).toBe(null);
     const singleBusStopButton = wrapper.find(".single-bus-stop-wrapper");
-    expect(singleBusStopButton.text()).toContain(fakeData[0].stop);
+    expect(singleBusStopButton.text()).toContain(fakeStopApiResponse[0].stop);
   });
 
   it("can change sorting", async () => {

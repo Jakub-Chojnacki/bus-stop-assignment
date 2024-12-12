@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, defineExpose } from "vue";
 
 import { ActionTypes } from "@/store/actions";
 import { useStore } from "@/store";
 
 import SingleBusStop from "@/components/SingleBusStop.vue";
 import SearchInput from "@/components/SearchInput.vue";
-import CardHeader from  "@/components/CardHeader.vue"
+import CardHeader from "@/components/CardHeader.vue";
 import BaseLoader from "@/components/BaseLoader.vue";
 import ErrorWithRefetch from "@/components/ErrorWithRefetch.vue";
 
@@ -18,7 +18,7 @@ const searchValue = ref("");
 const sort = ref<TSortDirection>("asc");
 const isSortAsc = computed(() => sort.value === "asc");
 const busStops = computed(() =>
-  store.getters['GET_FILTERED_STOPS'](searchValue.value, sort.value)
+  store.getters["GET_FILTERED_STOPS"](searchValue.value, sort.value)
 );
 const isLoadingStops = computed(() => store.state.isLoadingStops);
 const error = computed(() => store.state.error);
@@ -27,13 +27,15 @@ const handleRetry = (): void => {
   store.dispatch(ActionTypes.FETCH_STOPS);
 };
 
-const handleChangeSort = ():void => {
+const handleChangeSort = (): void => {
   if (isSortAsc.value) {
     sort.value = "dsc";
   } else {
     sort.value = "asc";
   }
 };
+
+defineExpose({ searchValue, busStops, isLoadingStops }); // for testing purposes
 </script>
 
 <template>
