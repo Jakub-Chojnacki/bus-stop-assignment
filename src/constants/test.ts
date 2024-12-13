@@ -1,4 +1,6 @@
-export const fakeStopApiResponse = [
+import { TGetStopsResponse } from "@/types/api";
+
+export const fakeStopApiResponse:TGetStopsResponse = [
   {
     line: 103,
     order: 1,
