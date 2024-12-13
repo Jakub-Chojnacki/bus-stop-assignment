@@ -1,9 +1,12 @@
 import { mount } from "@vue/test-utils";
+
 import { useStore } from "@/store";
+import { MutationTypes } from "@/store/mutations";
 
 import BusLineSelect from "@/components/BusLineSelect.vue";
-import { MutationTypes } from "@/store/mutations";
+
 import generateMockStore from "@/utils/generateMockStore";
+
 import { fakeStopApiResponse } from "@/constants/test";
 
 vi.mock("@/store", () => ({
@@ -43,7 +46,9 @@ describe("BusLineSelect", () => {
 
   it("shows error message", () => {
     const { store } = setupStore();
+
     const error = "Example error message";
+
     store.commit(MutationTypes.SET_ERROR, error);
 
     const wrapper = mount(BusLineSelect, {
@@ -61,6 +66,7 @@ describe("BusLineSelect", () => {
 
   it("shows a list of SingleBusLine", async () => {
     const { store } = setupStore();
+
     const fakeStopApiResponse = [
       {
         line: 103,

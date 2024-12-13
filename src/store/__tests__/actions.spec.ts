@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-types */
 //We have to assert as Function because of the way TypeScript handles the actions object.
-import { actions, ActionTypes } from "@/store/actions";
-import { MutationTypes } from "@/store/mutations";
+//Another, more complex way would be to use a helper function like the one from the docs: https://vuex.vuejs.org/guide/testing.html#testing-actions
 import axios from "axios";
 import { Mock } from "vitest";
+
+import { actions, ActionTypes } from "@/store/actions";
+import { MutationTypes } from "@/store/mutations";
 
 describe("actions", () => {
   const fakeData = [

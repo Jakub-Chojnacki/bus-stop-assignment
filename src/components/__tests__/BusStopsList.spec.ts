@@ -1,10 +1,12 @@
 import { mount } from "@vue/test-utils";
 
 import { useStore } from "@/store";
+import { MutationTypes } from "@/store/mutations";
 
 import BusStopsList from "@/components/BusStopsList.vue";
+
 import generateMockStore from "@/utils/generateMockStore";
-import { MutationTypes } from "@/store/mutations";
+
 import { fakeStopApiResponse } from "@/constants/test";
 
 vi.mock("@/store", () => ({
@@ -25,6 +27,7 @@ const setupStore = () => {
 describe("BusStopList", () => {
   it("shows loading state", () => {
     const { store } = setupStore();
+
     store.commit(MutationTypes.SET_IS_LOADING_STOPS, true);
 
     const wrapper = mount(BusStopsList, {
@@ -37,7 +40,9 @@ describe("BusStopList", () => {
 
   it("shows error state", () => {
     const { store } = setupStore();
+
     const error = "Example error message";
+
     store.commit(MutationTypes.SET_ERROR, error);
 
     const wrapper = mount(BusStopsList, {
@@ -78,7 +83,9 @@ describe("BusStopList", () => {
     });
 
     expect(wrapper.vm.busStops.length).toBe(2);
+
     wrapper.vm.searchValue = "Second stop";
+    
     expect(wrapper.vm.busStops.length).toBe(1);
   });
 });

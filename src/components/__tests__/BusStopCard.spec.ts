@@ -1,7 +1,11 @@
 import { mount } from "@vue/test-utils";
-import BusStopCard from "@/components/BusStopCard.vue";
-import generateMockStore from "@/utils/generateMockStore";
+
 import { useStore } from "@/store";
+
+import BusStopCard from "@/components/BusStopCard.vue";
+
+import generateMockStore from "@/utils/generateMockStore";
+
 import { fakeStopApiResponse } from "@/constants/test";
 
 vi.mock("@/store", () => ({
@@ -63,8 +67,11 @@ describe("BusStopCard", () => {
     const { wrapper } = setupStoreAndWrapper();
 
     expect(wrapper.vm.sort).toBe("asc");
+
     const sortingButton = wrapper.find(".bus-sort");
+
     await sortingButton.trigger("click");
+    
     expect(wrapper.vm.sort).toBe("dsc");
   });
 });

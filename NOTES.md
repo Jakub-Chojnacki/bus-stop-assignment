@@ -35,3 +35,6 @@
 5.  I am not sure what is the best way to achieve the border around bus line and bus stop cards. I based my solution on: https://stackoverflow.com/a/26858151. I tried https://kovart.github.io/dashed-border-generator/ but I couldn't get it to work with the rounded corners.
 
 6.  The hardest part was getting the VueX tests to work. I had to find a lot of workarounds and docs/articles are usually written in plain js so typing it was difficult
+
+7. I have written some basic unit tests for the more complicated components. I mostly tested the data-layer not UI but I tried to sneak-in some bits of UI testing as well just to show I can do it :) Though, I would prefer to use something like cypress for UI integration/e2e testing.
+
