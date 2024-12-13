@@ -39,21 +39,9 @@ defineProps<TProps>();
 }
 
 .bus-card-heading {
-  height: var(--card-header-height);
-}
-
-.bus-sort {
-  height: var(--card-sort-wrapper-height);
-
-  svg {
-    display: inline-block;
-  }
-
-}
-
-.bus-card-heading {
   display: flex;
   align-items: flex-end;
+  height: var(--card-header-height);
 
   h2 {
     font-size: 0.875rem;
@@ -71,5 +59,12 @@ defineProps<TProps>();
   text-align: left;
   font-weight: 600;
   font-size: 0.75rem;
+
+  height: var(--card-sort-wrapper-height);
+
+  svg {
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
 }
 </style>
