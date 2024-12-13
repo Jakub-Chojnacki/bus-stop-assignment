@@ -23,7 +23,7 @@ onMounted(() => {
 
 <style>
 .wrapper {
-  min-height: 100dvh;
+  height: 100dvh;
   background-color: var(--main-bg-color);
   padding: 2.5rem 2rem;
   display: flex;

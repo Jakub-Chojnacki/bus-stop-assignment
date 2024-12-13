@@ -21,23 +21,21 @@ defineProps<TProps>();
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   flex-direction: column;
   color: var(--error-text-color);
 
   button {
-    appearance: none;
     background-color: var(--accent-color);
-    border-radius: 6px;
+    border-radius: var(--base-border-radius);
     color: white;
-    display: inline-block;
     font-size: 0.875rem;
     padding: 0.375rem 1rem;
     text-align: center;
     transition: all 0.15s ease;
+    border: 0;
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
   }
 }

@@ -30,7 +30,7 @@ const handleRetry = (): void => {
     <div class="fetch-state-wrapper error" v-if="error">
       <ErrorWithRefetch :error="error" :handle-retry="handleRetry" />
     </div>
-    <div class="bus-line-wrapper" v-if="!isLoadingStops">
+    <div class="bus-line-wrapper" v-if="!isLoadingStops && !error">
       <SingleBusLine
         v-for="line in uniqueLines"
         :key="String(line)"
