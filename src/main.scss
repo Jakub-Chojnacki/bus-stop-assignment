@@ -1,7 +1,66 @@
 //These styles could be placed in App.vue or MainLayout but I think it's cleaner to store them in a separate file
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
 
-:root{
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/* Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*  Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/* Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/* Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+/*
+   Create a root stacking context
+*/
+#root {
+  isolation: isolate;
+}
+:root {
+  /* Colors */
   --main-bg-color: #f3f4f9;
   --heading-text-color: #1a1a1a;
   --base-border-radius: 0.25rem;
@@ -12,6 +71,17 @@
   --active-link-color: #33373c;
   --hover-element-bg-color: #f8f8fb;
   --error-text-color: red;
+
+  /* Spacing and heights */
+  --base-heading-height: 3.5rem;
+  --main-wrapper-padding-block: 2.5rem;
+  --main-wrapper-spacing: var(--main-wrapper-padding-block) 2rem;
+  --main-heading-height: 2rem;
+  --main-heading-bottom-spacing: 1.5rem;
+  --select-bus-line-height: 13.5rem; //216px
+  --select-bus-line-bottom-spacing: 1rem;
+  --nav-spacing: 1.25rem;
+  --nav-height: 4rem;
 }
 
 body {

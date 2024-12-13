@@ -10,14 +10,13 @@
 <style lang="scss" scoped>
 .nav-wrapper {
   --nav-inactive-link-color: var(--secondary-color);
-  --nav-spacing: 1.25rem;
   --nav-link-font-size: 0.875rem;
   --nav-line-height: calc(
     var(--nav-spacing) + 1rem - var(--nav-link-font-size)
   );
 
   background-color: white;
-  height: 4rem;
+  height: var(--nav-height);
   display: flex;
   align-items: center;
   padding-inline: 1.5rem;

@@ -28,20 +28,22 @@ const isSelectedBusStop = computed(() => !!store.state.selectedBusStop);
 
 <style lang="scss">
 .bus-select-area-wrapper {
-  --card-height: 545px;
-  --card-header-height: 56px;
-  --card-sort-wrapper-height: 56px;
-  --card-list-max-height: calc(var(--card-height) - var(--card-header-height) - var(--card-sort-wrapper-height));
+  --main-heading-total-height: calc(var(--main-heading-height) + var(--main-heading-bottom-spacing));
+  --select-bus-line-total-height: calc(var(--select-bus-line-height) + var(--select-bus-line-bottom-spacing));
+  --nav-total-height: calc(var(--nav-height) + var(--nav-spacing));
+  --bus-card-height: calc(100dvh - var(--main-wrapper-padding-block) - var(--nav-total-height) - var(--main-wrapper-padding-block) - var(--main-heading-total-height) - var(--select-bus-line-total-height));
+  --card-header-height: var(--base-heading-height);
+  --card-sort-wrapper-height: var(--base-heading-height);
+  --card-list-height: calc(var(--bus-card-height) - var(--card-header-height) - var(--card-sort-wrapper-height));
 
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  flex-grow: 1;
+  flex: 1;
 
   .bus-card {
     border-radius: 4px;
     display: flex;
-    height: var(--card-height);
     background-color: white;
 
     &.empty {
@@ -57,6 +59,15 @@ const isSelectedBusStop = computed(() => !!store.state.selectedBusStop);
     .not-selected {
       font-size: 0.875rem;
       color: var(--main-lighten-2-color);
+    }
+
+    .bus-card-wrapper {
+      width: 100%;
+
+      .scroll-wrapper {
+        overflow-y: auto;
+        height: var(--card-list-height);
+      }
     }
   }
 }

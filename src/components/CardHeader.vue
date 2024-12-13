@@ -20,13 +20,10 @@ defineProps<TProps>();
     <div v-if="headerText" class="bus-card-heading">
       <h2>{{ headerText }}</h2>
     </div>
-    <button
-      v-if="isSortable && handleChangeSort"
-      class="bus-sort divider"
-      @click="handleChangeSort"
-    >
+    <button v-if="isSortable && handleChangeSort" class="bus-sort divider" @click="handleChangeSort">
       {{ sortText }}
-      <ArrowBottomRec v-if="isSortAsc" /> <ArrowTopRec v-if="!isSortAsc" />
+      <ArrowBottomRec v-if="isSortAsc" />
+      <ArrowTopRec v-if="!isSortAsc" />
     </button>
     <div v-if="!isSortable" class="bus-sort divider">
       {{ sortText }}
@@ -47,6 +44,11 @@ defineProps<TProps>();
 
 .bus-sort {
   height: var(--card-sort-wrapper-height);
+
+  svg {
+    display: inline-block;
+  }
+
 }
 
 .bus-card-heading {
@@ -56,7 +58,7 @@ defineProps<TProps>();
   h2 {
     font-size: 0.875rem;
     color: var(--heading-text-color);
-    font-weight:600;
+    font-weight: 600;
   }
 }
 
@@ -67,7 +69,7 @@ defineProps<TProps>();
   background: transparent;
   width: 100%;
   text-align: left;
-  font-weight:600;
-  font-size:0.75rem;
+  font-weight: 600;
+  font-size: 0.75rem;
 }
 </style>

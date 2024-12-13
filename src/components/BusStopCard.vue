@@ -40,36 +40,12 @@ defineExpose({ sort }); //for testing
 
 <template>
   <div class="bus-card-wrapper">
-    <CardHeader
-      :is-sortable="true"
-      :sort-text="'Bus Stops'"
-      :header-text="`Bus Line: ${props.line}`"
-      :is-sort-asc="isSortAsc"
-      :handle-change-sort="handleChangeSort"
-    />
+    <CardHeader :is-sortable="true" :sort-text="'Bus Stops'" :header-text="`Bus Line: ${props.line}`"
+      :is-sort-asc="isSortAsc" :handle-change-sort="handleChangeSort" />
     <div class="scroll-wrapper">
-      <div
-        class="single-bus-wrapper divider"
-        v-for="stop in busStops"
-        :key="stop"
-      >
-        <SingleBusStop
-          :stop="stop"
-          @click="handleSetStop(stop)"
-          :is-selectable="true"
-        />
+      <div class="single-bus-wrapper divider" v-for="stop in busStops" :key="stop">
+        <SingleBusStop :stop="stop" @click="handleSetStop(stop)" :is-selectable="true" />
       </div>
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.bus-card-wrapper {
-  width: 100%;
-
-  .scroll-wrapper {
-    overflow-y: auto;
-    max-height: var(--card-list-max-height);
-  }
-}
-</style>

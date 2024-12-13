@@ -15,7 +15,7 @@ onMounted(() => {
 
 <template>
   <div class="wrapper">
-    <h1>Timetable</h1>
+    <h1 class="main-heading">Timetable</h1>
     <MainNavbar />
     <slot />
   </div>
@@ -24,18 +24,20 @@ onMounted(() => {
 <style>
 .wrapper {
   height: 100dvh;
-  background-color: var(--main-bg-color);
-  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
+  background-color: var(--main-bg-color);
+  padding: var(--main-wrapper-spacing);
+
 
   h1 {
     font-size: 1.5rem;
-    line-height: 2rem;
-    color: var(--heading-text-color);
     font-weight: 600;
     margin: 0;
-    margin-bottom: 1.5rem;
+    color: var(--heading-text-color);
+    line-height: var(--main-heading-height);
+    height: var(--main-heading-height);
+    margin-bottom: var(--main-heading-bottom-spacing);
   }
 
   .divider {

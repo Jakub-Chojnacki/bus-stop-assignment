@@ -21,31 +21,12 @@ defineExpose({ selectedBusLine, busTimes });
 
 <template>
   <div class="bus-card-wrapper">
-    <CardHeader
-      :is-sortable="false"
-      :sort-text="'Time'"
-      :header-text="`Bus Stop: ${selectedBusLine}`"
-      :is-sort-asc="false"
-    />
+    <CardHeader :is-sortable="false" :sort-text="'Time'" :header-text="`Bus Stop: ${selectedBusLine}`"
+      :is-sort-asc="false" />
     <div class="scroll-wrapper">
-      <div
-        class="single-bus-wrapper divider"
-        v-for="busTime in busTimes"
-        :key="busTime"
-      >
+      <div class="single-bus-wrapper divider" v-for="busTime in busTimes" :key="busTime">
         <SingleBusTime :time="busTime" />
       </div>
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.bus-card-wrapper {
-  width: 100%;
-
-  .scroll-wrapper {
-    overflow-y: auto;
-    max-height: var(--card-list-max-height);
-  }
-}
-</style>
