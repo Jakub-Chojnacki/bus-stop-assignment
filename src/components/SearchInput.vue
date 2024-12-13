@@ -17,18 +17,9 @@ const isFloating = computed(() => isFocused.value || props.modelValue.length);
 
 <template>
   <div class="input-wrapper">
-    <input
-      class="search-input"
-      type="text"
-      :name="props.name"
-      :id="props.id"
-      @change="
-        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
-      "
-      @focus="isFocused = true"
-      @blur="isFocused = false"
-      required
-    />
+    <input class="search-input" type="text" :name="props.name" :id="props.id" @change="
+      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+      " @focus="isFocused = true" @blur="isFocused = false" required />
     <label for="name" :class="{ 'is-floating': isFloating }">{{
       isFloating ? "Search" : "Search..."
     }}</label>
@@ -49,6 +40,7 @@ const isFloating = computed(() => isFocused.value || props.modelValue.length);
     padding: var(--inline-spacing) 1rem;
     border: 1px solid var(--search-input-border-color);
     transition: border-color 0.3s ease;
+
     &:focus,
     &:active {
       /* border-color: var(--accent-color); */

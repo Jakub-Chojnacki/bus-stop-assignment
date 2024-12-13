@@ -33,6 +33,9 @@ onMounted(() => {
     font-size: 1.5rem;
     line-height: 2rem;
     color: var(--heading-text-color);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5rem;
   }
 
   .divider {

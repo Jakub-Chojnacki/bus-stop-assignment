@@ -56,6 +56,7 @@ defineProps<TProps>();
   h2 {
     font-size: 0.875rem;
     color: var(--heading-text-color);
+    font-weight:600;
   }
 }
 
@@ -66,5 +67,7 @@ defineProps<TProps>();
   background: transparent;
   width: 100%;
   text-align: left;
+  font-weight:600;
+  font-size:0.75rem;
 }
 </style>

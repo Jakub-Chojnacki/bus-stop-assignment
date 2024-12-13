@@ -15,12 +15,8 @@ const isSelected = computed(() => store.state.selectedBusLine === props.line);
 </script>
 
 <template>
-  <button
-    @click="store.dispatch(ActionTypes.SET_SELECTED_BUS_LINE, props.line)"
-    class="single-line-button"
-    :class="{ active: isSelected }"
-    type="button"
-  >
+  <button @click="store.dispatch(ActionTypes.SET_SELECTED_BUS_LINE, props.line)" class="single-line-button"
+    :class="{ active: isSelected }" type="button">
     {{ props.line }}
   </button>
 </template>
@@ -33,6 +29,7 @@ const isSelected = computed(() => store.state.selectedBusLine === props.line);
   outline: 0;
   border: 0;
   border-radius: var(--base-border-radius);
+  font-weight: 500;
 
   &:hover,
   &.active {

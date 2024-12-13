@@ -56,6 +56,7 @@ const handleRetry = (): void => {
     h2 {
       font-size: 0.875rem;
       color: var(--heading-text-color);
+      font-weight:500;
     }
   }
 

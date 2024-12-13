@@ -43,18 +43,10 @@ defineExpose({ searchValue, busStops, isLoadingStops }); // for testing purposes
     <div class="search-wrapper">
       <SearchInput v-model="searchValue" name="bus-search" id="bus-search" />
     </div>
-    <CardHeader
-      :is-sortable="true"
-      sort-text="Bus stops"
-      @click="handleChangeSort"
-      :is-sort-asc="isSortAsc"
-    />
+    <CardHeader :is-sortable="true" sort-text="Bus stops" :is-sort-asc="isSortAsc"
+      :handleChangeSort="handleChangeSort" />
     <div class="scroll-wrapper">
-      <div
-        class="single-bus-wrapper divider"
-        v-for="stop in busStops"
-        :key="stop"
-      >
+      <div class="single-bus-wrapper divider" v-for="stop in busStops" :key="stop">
         <SingleBusStop :stop="stop" />
       </div>
       <div class="fetch-state-wrapper" v-if="isLoadingStops">
@@ -64,10 +56,7 @@ defineExpose({ searchValue, busStops, isLoadingStops }); // for testing purposes
         <ErrorWithRefetch :error="error" :handle-retry="handleRetry" />
       </div>
 
-      <div
-        class="empty-stops"
-        v-if="!busStops.length && !isLoadingStops && !error"
-      >
+      <div class="empty-stops" v-if="!busStops.length && !isLoadingStops && !error">
         No bus stops were found!
       </div>
     </div>
@@ -79,6 +68,7 @@ defineExpose({ searchValue, busStops, isLoadingStops }); // for testing purposes
   --list-spacing: 0.5rem;
   --container-min-height: 300px;
   background-color: white;
+  border-radius: var(--base-border-radius);
 
   .search-wrapper {
     padding: var(--list-spacing);
